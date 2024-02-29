@@ -20,13 +20,13 @@ from utils import torch_load_cpu, load_problem
 def run(opts):
 
     # Pretty print the run args
-    pp.pprint(vars(opts))
+    pp.pprint(vars(opts))  #vars接受一个字典,这一行可以打印参数值
 
     # Set the random seed
-    torch.manual_seed(opts.seed)
+    torch.manual_seed(opts.seed)  #使每次产生的随机数序列相同（由随机数种子决定）
 
     # Optionally configure tensorboard
-    tb_logger = None
+    tb_logger = None #日志记录，如果在服务器跑，需要修改端口等才能打开log.
     if not opts.no_tensorboard:
         tb_logger = TbLogger(os.path.join(opts.log_dir, "{}_{}".format(opts.problem, opts.graph_size), opts.run_name))
 
